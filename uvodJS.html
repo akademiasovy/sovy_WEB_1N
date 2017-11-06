@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Stranka</title>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript">
+      function showAlert()
+			{
+				     var fname, lname;
+						 fname=document.getElementById("firstname").value;
+						 lname=document.getElementById("lastname").value;
+  				  // alert("Hello "+fname+" "+lname+" ! You pressed the button OK.");
+						document.getElementById("output").innerHTML= "Hello "+fname+" "+lname+" ! You pressed the button OK.";
+			}
+			function deleteOutput(){
+				document.getElementById("output").innerHTML="";
+			}
+			function printMessage(){
+				document.getElementById("message").innerHTML="Click on me!";
+			}
+			function removeMessage(){
+				document.getElementById("message").innerHTML="";
+			}
+  </script>
+</head>
+<body>
+	<form>
+			<table align="center">
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="uname" id="firstname"></td>
+			</tr>
+			<tr>
+				<td>Surname</td>
+				<td><input type="text" name="usurn" id="lastname"></td>
+			</tr>
+			<tr>
+				<td><input value="Reset" type="reset" style="color: red" onclick="deleteOutput()"></td>
+				<td><input value="OK" type="button" style="color:green;" align="center"
+					 onclick="showAlert()" onmouseover="printMessage()" onmouseout="removeMessage()"></td>
+			</tr>
+		</table>
+    <DIV id="output"></DIV>
+		<DIV id="message"></DIV>
+</body>
+</html>
