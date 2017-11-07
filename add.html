@@ -9,18 +9,21 @@
       width: 50px;
       height: 20px;
     }
+    .errors { font-size: 10px; color: red;}
     </style>
   </head>
 
   <body>
-  <table>
+  <table border="1">
     <tr>
-      <td><input type="text" name="" value="" id="first" ></td>
-      <td><input type="text" name="" value="" id="second" ></td>
+      <td><input type="text" name="" value="" id="first" ><br>
+      <div id="errorFirst" class="errors"></div></td>
+      <td><input type="text" name="" value="" id="second" ><br>
+      <div id="errorSecond" class="errors"></div></td>
     </tr>
     <tr>
       <td><input type="text" name="" value="" id="result"></td>
-      <td><button type="button" name="button" id="btnOperation" onclick="addNumbers()">ADD</button></td>
+      <td><button type="button" name="button" id="btnOperation" onclick="mathOperation()">ADD</button></td>
     </tr>
     <tr>
       <td>
@@ -34,10 +37,36 @@
   </table>
 <script type="text/javascript">
 
-function addNumbers() {
+function mathOperation() {
   var firstNum = document.getElementById('first');
   var secondNum = document.getElementById('second');
-  var result=parseInt(firstNum.value) + parseInt(secondNum.value);
+
+  if( firstNum.value =='' || isNaN(firstNum.value)==true){
+    console.log("no integer");
+    document.getElementById('errorFirst').innerHTML="Invalid number !";
+  }
+  else{
+      document.getElementById('errorFirst').innerHTML="";
+  }
+
+  if( secondNum.value =='' || isNaN(secondNum.value)==true){
+    console.log("no integer");
+    document.getElementById('errorSecond').innerHTML="Invalid number !";
+  }
+  else{
+      document.getElementById('errorSecond').innerHTML="";
+  }
+
+  var result;
+  if( document.getElementById('opAdd').checked == true )
+         result=parseInt(firstNum.value) + parseInt(secondNum.value);
+  else if( document.getElementById('opSub').checked == true )
+         result=parseInt(firstNum.value) - parseInt(secondNum.value);
+  else if( document.getElementById('opMul').checked == true )
+        result=parseInt(firstNum.value) * parseInt(secondNum.value);
+  else
+        result=parseInt(firstNum.value) / parseInt(secondNum.value);
+
   var resultField = document.getElementById('result');
   resultField.value= result;
 
