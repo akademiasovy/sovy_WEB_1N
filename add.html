@@ -22,7 +22,7 @@
       <div id="errorSecond" class="errors"></div></td>
     </tr>
     <tr>
-      <td><input type="text" name="" value="" id="result"></td>
+      <td><input type="text" name="" value="" id="result" readonly></td>
       <td><button type="button" name="button" id="btnOperation" onclick="mathOperation()">ADD</button></td>
     </tr>
     <tr>
@@ -32,17 +32,29 @@
         <INPUT TYPE="radio" NAME="operation" ID="opMul" onclick="changeOperation('MUL')"> Mul<BR>
         <INPUT TYPE="radio" NAME="operation" ID="opDiv" onclick="changeOperation('DIV')"> Div<BR>
       </td>
-      <td></td>
+      <td><img src="exMark.jpg" id="imgExMark" onclick="hideExMark()"></td>
       </tr>
   </table>
 <script type="text/javascript">
 
+
+
+function hideExMark(){
+  document.getElementById('imgExMark').style.visibility='hidden';
+}
+
 function mathOperation() {
   var firstNum = document.getElementById('first');
   var secondNum = document.getElementById('second');
+  var resultField = document.getElementById('result');
+  document.getElementById('imgExMark').style.visibility='hidden';
+  var error;
+  error=false;
+  resultField.value = "";
 
   if( firstNum.value =='' || isNaN(firstNum.value)==true){
     console.log("no integer");
+    error=true;
     document.getElementById('errorFirst').innerHTML="Invalid number !";
   }
   else{
@@ -51,25 +63,41 @@ function mathOperation() {
 
   if( secondNum.value =='' || isNaN(secondNum.value)==true){
     console.log("no integer");
+    error=true;
     document.getElementById('errorSecond').innerHTML="Invalid number !";
   }
   else{
       document.getElementById('errorSecond').innerHTML="";
   }
+  if(document.getElementById('opDiv').checked == true && secondNum.value==0 ){
+    error=true;
+    document.getElementById('errorSecond').innerHTML="Number cannot be zero !";
+  }
+
 
   var result;
   if( document.getElementById('opAdd').checked == true )
-         result=parseInt(firstNum.value) + parseInt(secondNum.value);
+         result=parseFloat(firstNum.value) + parseFloat(secondNum.value);
   else if( document.getElementById('opSub').checked == true )
-         result=parseInt(firstNum.value) - parseInt(secondNum.value);
+         result=parseFloat(firstNum.value) - parseFloat(secondNum.value);
   else if( document.getElementById('opMul').checked == true )
-        result=parseInt(firstNum.value) * parseInt(secondNum.value);
+        result=parseFloat(firstNum.value) * parseFloat(secondNum.value);
   else
-        result=parseInt(firstNum.value) / parseInt(secondNum.value);
+        result=parseFloat(firstNum.value) / parseFloat(secondNum.value);
 
-  var resultField = document.getElementById('result');
-  resultField.value= result;
 
+
+  if(!error){
+    var color='black';
+       if(result>0)
+          color='green';
+        else if(result<0)
+          color='red';
+       resultField.style.color=color;
+       resultField.value= result;
+     }
+  else
+       document.getElementById('imgExMark').style.visibility='visible';
 }
 
 function changeOperation( value){
