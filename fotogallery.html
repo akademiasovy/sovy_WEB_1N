@@ -14,7 +14,7 @@
     <img src="img/img4.jpg" width="100" onclick="showPicture(4)">
     <img src="img/img5.jpg" width="100" onclick="showPicture(5)">
     <br>
-    <img width="500" id="bigImage">
+    <img width="500" id="bigImageId">
     <br>
     <button onclick="nextPicture()" >Next picture</button>
     <button onclick="start()" >Start looping</button>
@@ -26,7 +26,7 @@
     function showPicture(index){
         var fileName="img/img"+index+".jpg";
         console.log(fileName);
-        var bigImage= document.getElementById('bigImage') ;
+        var bigImage= document.getElementById('bigImageId') ;
         bigImage.src = fileName;
         actual=index;
     }
@@ -36,11 +36,12 @@
       actual++;
       if(actual==6) actual=1;
       var fileName="img/img"+actual+".jpg";
-      var bigImage= document.getElementById('bigImage') ;
+      var bigImage= document.getElementById('bigImageId') ;
       bigImage.src = fileName;
     }
 
     function start(){
+        stop();
         ref =  setInterval(nextPicture,2000);
     }
     function stop(){
