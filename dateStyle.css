@@ -3,4 +3,10 @@
   margin: auto;
   border: 1px solid;
   width: 400px;
+  padding: 10px;
+}
+
+#errorBirthDate {
+  color: red;
+  font-size: 10 px;
 }

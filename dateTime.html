@@ -8,10 +8,17 @@
 
   </head>
 
-  <body onload="setCurrentDate()">
+  <body onload="run()">
       <div id="container">
           <div> Current date: <span id="currentDate"></span>
           Current time: <span id="currentTime"></span></div>
+          <hr>
+          <div> Date of birth:
+            <input type="date" id="birth" onchange="changedBirthDate()">
+          <span id="errorBirthDate"></span></div>
+          <hr>
+          <div id="age"> </div>
+          <div id="dayOfTheWeek"> </div>
       </div>
   </body>
 </html>
